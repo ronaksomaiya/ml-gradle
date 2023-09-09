@@ -12,7 +12,6 @@ dependencies {
 	implementation localGroovy()
 
 	api project(":ml-app-deployer")
-//	api 'com.marklogic:ml-app-deployer:4.6.0'
 	implementation "com.marklogic:mlcp-util:1.0.1"
 	implementation "com.marklogic:marklogic-data-movement-components:2.7.0"
 	implementation "commons-io:commons-io:2.11.0"
