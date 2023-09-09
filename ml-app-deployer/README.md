@@ -3,23 +3,25 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Known Vulnerabilities](https://snyk.io/test/github/marklogic/ml-app-deployer/badge.svg)](https://snyk.io/test/github/marklogic/ml-app-deployer)
 
-ml-app-deployer is a Java library that provides two capabilities:
+ml-app-deployer is a Java library providing two main capabilities:
 
-1. A client library for the [MarkLogic Management REST API](http://docs.marklogic.com/REST/management) 
-1. A command-driven approach for deploying and undeploying an application to MarkLogic that depends on the management client library
+1. A client library for the [MarkLogic Management REST API](http://docs.marklogic.com/REST/management).
+1. A command-driven approach for deploying and undeploying an application to MarkLogic that depends on the 
+	 management client library.
 
-If you're just looking for a Java library for interacting with the Management REST API, you can certainly use ml-app-deployer. 
-The deployer/command library can be safely ignored if you don't need it. 
+## Requirements 
 
-### What does ml-app-deployer depend on? 
+ml-app-deployer depends on MarkLogic 10 or later and Java 1.8+. Earlier versions of MarkLogic may work, but due to 
+improvements and bug fixes in the MarkLogic Management REST API across versions 8, 9, and 10, it is recommended to use 
+MarkLogic 10 or later.
 
-ml-app-deployer depends on MarkLogic 10 and Java 1.8+. Earlier versions of MarkLogic may work, but due to improvements 
-and bug fixes in the MarkLogic Management REST API across versions 8, 9, and 10, it is recommended to use MarkLogic 10.
+## Dependencies
 
-Under the hood, it depends on Spring's [RestTemplate](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html) for interacting with the Management REST API. 
-It also depends on [ml-javaclient-util](https://github.com/marklogic/ml-javaclient-util) for loading modules, which is done via the MarkLogic Client REST API. 
+ml-app-deployer depends on Spring's 
+[RestTemplate](http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html) 
+for interacting with the Management REST API.
 
-### How do I start using the client library?
+## Usage
 
 The general pattern for using the management client library is:
 
@@ -27,16 +29,17 @@ The general pattern for using the management client library is:
 2. Create an instance of [ManageClient](https://github.com/marklogic/ml-app-deployer/blob/master/src/main/java/com/marklogic/mgmt/ManageClient.java) using ManageConfig. ManageClient simply wraps a RestTemplate with some convenience methods.
 3. Using ManageClient, create a Manager class based on the management resource you want to configure. For example, to create or modify or delete a database, create a [DatabaseManager](https://github.com/marklogic/ml-app-deployer/blob/master/src/main/java/com/marklogic/mgmt/databases/DatabaseManager.java) to talk to the [database endpoints](http://docs.marklogic.com/REST/management/databases). 
 
-Here's a brief example of what that looks like:
+The following displays a simple example of the above:
 
-    ManageConfig config = new ManageConfig(); // defaults to localhost/8002/admin/admin
+    ManageConfig config = new ManageConfig("localhost", 8002, "admin", "the admin password");
     ManageClient client = new ManageClient(config);
     DatabaseManager dbMgr = new DatabaseManager(client);
     dbMgr.save("{\"database-name\":\"my-database\"}");
 
 ### How do I start using the deployer library?
 
-The main concept behind the deployer library is invoke a series of commands, where each command looks for one or more configuration files in a specific directory structure and then uses a Manager class in the client library to apply those configuration files as part of deploying an application. 
+The main concept behind the deployer library is to invoke a series of commands, where each command looks for one or 
+more configuration files in a specific directory structure and then uses a Manager class in the client library to apply those configuration files as part of deploying an application. 
 
 The best way to understand that directory is to look at the [sample-app application](https://github.com/marklogic/ml-app-deployer/tree/master/src/test/resources/sample-app/src/main/ml-config) that's used by the JUnit tests. The concept is fairly simple - within the ml-config directory, there's a directory for each of the top-level resources defined by the [Management API docs](http://docs.marklogic.com/REST/management). Thus, database config files are found under "databases", while scheduled task config files are found under "scheduled-tasks". Some directories have subdirectories based on how the Management API endpoints are defined - for example, the "security" directory has child directories of "amps", "roles", "users", and others based on the resources that comprise the "security" set of endpoints. 
 
