@@ -38,6 +38,10 @@ subprojects {
 	// Ignores warnings on params that don't have descriptions, which is a little too noisy
 	javadoc.options.addStringOption('Xdoclint:none', '-quiet')
 
+	signing {
+		sign configurations.archives
+	}
+
 
 	// See https://github.com/snyk/gradle-plugin for more information
 //	snyk {
