@@ -63,10 +63,10 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 	duplicatesStrategy = "exclude"
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
-	classifier "javadoc"
-	from javadoc
-}
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//	classifier "javadoc"
+//	from javadoc
+//}
 
 artifacts {
 	archives javadocJar, sourcesJar

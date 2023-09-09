@@ -35,10 +35,10 @@ task sourcesJar(type: Jar, dependsOn: classes) {
   from sourceSets.main.allGroovy
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
-	classifier "javadoc"
-	from javadoc
-}
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//	classifier "javadoc"
+//	from javadoc
+//}
 
 artifacts {
 	archives javadocJar, sourcesJar
