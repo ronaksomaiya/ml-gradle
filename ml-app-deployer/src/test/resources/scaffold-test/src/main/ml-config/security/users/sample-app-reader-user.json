@@ -1,0 +1,5 @@
+{
+  "user-name" : "sample-app-reader",
+  "password" : "sample-app-reader",
+  "role" : [ "sample-app-reader" ]
+}
