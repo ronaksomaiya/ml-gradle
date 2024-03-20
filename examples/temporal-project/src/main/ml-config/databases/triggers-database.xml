@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<database-properties xmlns="http://marklogic.com/manage/database/properties">
+	<database-name>%%TRIGGERS_DATABASE%%</database-name>
+</database-properties>

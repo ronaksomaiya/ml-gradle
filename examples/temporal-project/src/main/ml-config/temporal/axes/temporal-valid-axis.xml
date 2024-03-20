@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<temporal-axis-properties xmlns="http://marklogic.com/manage/temporal-axis/properties">
+	<axis-name>valid</axis-name>
+	<axis-start>
+		<element-reference>
+			<namespace-uri>
+			</namespace-uri>
+			<localname>validStart</localname>
+		</element-reference>
+	</axis-start>
+	<axis-end>
+		<element-reference>
+			<namespace-uri>
+			</namespace-uri>
+			<localname>validEnd</localname>
+		</element-reference>
+	</axis-end>
+</temporal-axis-properties>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<temporal-collection-properties xmlns="http://marklogic.com/manage/temporal-collection/properties">
+	<collection-name>temporal-collection</collection-name>
+	<system-axis>system</system-axis>
+	<valid-axis>valid</valid-axis>
+	<options>
+		<option>updates-safe</option>
+	</options>
+</temporal-collection-properties>
